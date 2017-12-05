@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/reg_class"
+            android:icon="@drawable/reg"
+            android:title="Regular Class" />
+        <item
+            android:id="@+id/extra_class"
+            android:icon="@drawable/reg"
+            android:title="Extra Class" />
+        <item
+            android:id="@+id/test"
+            android:icon="@drawable/test1"
+            android:title="Test" />
+
+    </group>
+
+    <item android:title="Contact Us">
+        <menu>
+            <item
+                android:id="@+id/phone"
+                android:icon="@drawable/phone"
+                android:title="Phone" />
+            <item
+                android:id="@+id/email"
+                android:icon="@drawable/email"
+                android:title="Email" />
+        </menu>
+    </item>
+
+</menu>
