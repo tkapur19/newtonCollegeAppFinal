@@ -8,8 +8,20 @@ public class listOfNotice {
     private String notice;
     private String date;
 
+    public listOfNotice() {
+
+    }
+
     public listOfNotice(String notice, String date) {
         this.notice = notice;
+        this.date = date;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
+
+    public void setDate(String date) {
         this.date = date;
     }
 

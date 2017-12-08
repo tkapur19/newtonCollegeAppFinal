@@ -37,6 +37,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.viewHolder> {
         listOfNotice listOfNotice=myList.get(position);
         holder.mainText.setText(listOfNotice.getNotice());
         holder.dateText.setText(listOfNotice.getDate());
+        Log.i(TAG, "onBindViewHolder: yes");
 
 
 

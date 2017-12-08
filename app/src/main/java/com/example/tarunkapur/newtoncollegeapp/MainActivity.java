@@ -23,6 +23,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +38,13 @@ public class MainActivity extends AppCompatActivity
 
     private static final int REQUEST_CALL_PHONE = 1;
     List<listOfNotice> notices;
+
+
+    private FirebaseDatabase mDataBase;
+    private DatabaseReference mRef;
+    private ChildEventListener childEventListener;
     String TAG="myMessage";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,32 +55,85 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Log.i(TAG, "re ");
-
-        recyclerView=(RecyclerView) findViewById(R.id.recycler_view);
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         notices=new ArrayList<>();
-        for(int i=0;i<50;i++){
-            listOfNotice myNotice=new listOfNotice("next class will be held on","20-12-17");
-            notices.add(myNotice);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            ViewPager viewPager=(ViewPager) findViewById(R.id.view_pager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            viewPagerAdapter viewPagerAdapter=new viewPagerAdapter(this);
-            viewPager.setAdapter(viewPagerAdapter);
-        }
+        //Firebase message Read
+        mDataBase=FirebaseDatabase.getInstance();
+        mRef=mDataBase.getReference().child("myNotice");
+        final myAdapter myAdapter=new myAdapter(notices);
 
 
 
-        myAdapter myAdapter=new myAdapter(notices);
-        recyclerView.setAdapter(myAdapter);
+
+
+
+
+        // Read from the database
+
+        mRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                listOfNotice myNotice=new listOfNotice();
+                myNotice=dataSnapshot.getValue(listOfNotice.class);
+                notices.add(myNotice);
+                recyclerView.setAdapter(myAdapter);
+
+
+
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                listOfNotice myNotice=new listOfNotice();
+                myNotice=dataSnapshot.getValue(listOfNotice.class);
+                notices.add(myNotice);
+                recyclerView.setAdapter(myAdapter);
+
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
+
+
+        //sending data to recyclerV
+
+
+
+
+
+
+        //ViewPager for ImageSlider
+        ViewPager viewPager=(ViewPager) findViewById(R.id.view_pager);
+
+        viewPagerAdapter viewPagerAdapter=new viewPagerAdapter(this);
+        viewPager.setAdapter(viewPagerAdapter);
 
 
 
@@ -153,6 +219,7 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.email) {
 
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
