@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.service.chooser.ChooserTarget;
+import android.service.chooser.ChooserTargetService;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -188,7 +190,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.reg_class) {
-            // Handle the camera action
+            // attendance system activity
+            Intent attandanceActivity=new Intent(this, Main2Activity.class);
+            startActivity(attandanceActivity);
         } else if (id == R.id.extra_class) {
 
         } else if (id == R.id.test) {
@@ -217,6 +221,17 @@ public class MainActivity extends AppCompatActivity
 
 
         else if (id == R.id.email) {
+
+           Intent intent=new Intent(Intent.ACTION_SEND);
+           intent.setData(Uri.parse("mailto:"));
+           String []to={"1tarun.kapur@gmail.com"};
+           intent.putExtra(Intent.EXTRA_EMAIL,to);
+           intent.putExtra(Intent.EXTRA_SUBJECT,"");
+           intent.putExtra(Intent.EXTRA_TEXT,"");
+           intent.setType("message/rfc822");
+            Intent chooser = Intent.createChooser(intent, "Send Email");
+            startActivity(chooser);
+
 
         }
 
