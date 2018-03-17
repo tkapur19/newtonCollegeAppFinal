@@ -9,5 +9,7 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="tab_text_1">MWF batch</string>
     <string name="tab_text_2">TTS batch</string>
+    <string name="title_activity_gallery">Gallery</string>
+    <string name="title_activity_image_viewer">ImageViewer</string>
 
 </resources>

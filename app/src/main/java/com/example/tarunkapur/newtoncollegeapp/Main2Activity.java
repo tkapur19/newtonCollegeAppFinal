@@ -1,5 +1,6 @@
 package com.example.tarunkapur.newtoncollegeapp;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -41,8 +42,15 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -78,6 +86,9 @@ public class Main2Activity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        else if(id==R.id.homeAsUp){
+            this.finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -124,4 +135,62 @@ public class Main2Activity extends AppCompatActivity {
             return 2;
         }
     }
+    public void getClass(View view){
+        int id=view.getId();
+        Intent intent=new Intent(this,Main3Activity.class);
+        switch(id){
+            case R.id.button2 : {
+                intent.putExtra("mymessage","3:30-4:30");
+                startActivity(intent);
+                break;
+
+            }
+            case R.id.button3:{
+                intent.putExtra("mymessage","5:45-6:45");
+                startActivity(intent);
+                break;
+
+
+            }
+            case R.id.button4:{
+                intent.putExtra("mymessage","6:45-7:45");
+                startActivity(intent);
+                break;
+
+
+            }
+            case R.id.button5:{
+                intent.putExtra("mymessage","3:50-4:50");
+                startActivity(intent);
+                break;
+
+
+            }
+            case R.id.button6:{
+                intent.putExtra("mymessage","4:50-5:50");
+                startActivity(intent);
+                break;
+
+
+            }
+            case R.id.button7:{
+                intent.putExtra("mymessage","5:50-6:50");
+                startActivity(intent);
+                break;
+
+
+            }
+            case R.id.button8:{
+                intent.putExtra("mymessage","6:50-7:50");
+                startActivity(intent);
+                break;
+
+
+            }
+        }
+
+    }
+
+
 }
+

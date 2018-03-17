@@ -1,6 +1,7 @@
 package com.example.tarunkapur.newtoncollegeapp;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -56,27 +57,21 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // RecyclerView initialisation and data encapsulation in recyclerView
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         notices=new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //Firebase message Read
+        //FirebaseDatabase initialisation
         mDataBase=FirebaseDatabase.getInstance();
         mRef=mDataBase.getReference().child("myNotice");
         final myAdapter myAdapter=new myAdapter(notices);
 
-
-
-
-
-
-
-        // Read from the database
+        // Read the added and changed data in the firebase database
 
         mRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -85,9 +80,6 @@ public class MainActivity extends AppCompatActivity
                 myNotice=dataSnapshot.getValue(listOfNotice.class);
                 notices.add(myNotice);
                 recyclerView.setAdapter(myAdapter);
-
-
-
 
             }
 
@@ -124,7 +116,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        //sending data to recyclerV
+
 
 
 
@@ -183,6 +175,17 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+    public static Intent getOpenFacebookIntent(Context context) {
+
+        try {
+            context.getPackageManager().getPackageInfo("com.facebook.katana", 0);
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/1813788072233513"));
+        } catch (Exception e) {
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/ntclg"));
+        }
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -194,8 +197,16 @@ public class MainActivity extends AppCompatActivity
             Intent attandanceActivity=new Intent(this, Main2Activity.class);
             startActivity(attandanceActivity);
         } else if (id == R.id.extra_class) {
+            Intent newtonGallery=new Intent(this,NewtonGallery.class);
+            startActivity(newtonGallery);
+
 
         } else if (id == R.id.test) {
+
+            Intent assignmentActivity=new Intent(this,Assignment.class);
+            startActivity(assignmentActivity);
+
+
 
         } else if (id == R.id.phone) {
 
@@ -234,6 +245,12 @@ public class MainActivity extends AppCompatActivity
 
 
         }
+        else if (id==R.id.facebook){
+            Intent facebookIntent=getOpenFacebookIntent(MainActivity.this);
+            startActivity(facebookIntent);
+
+
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -241,4 +258,11 @@ public class MainActivity extends AppCompatActivity
         return true;
 
     }
+
+
+
+        
+
+
 }
+

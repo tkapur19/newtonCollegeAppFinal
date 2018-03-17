@@ -5,15 +5,16 @@
         <item
             android:id="@+id/reg_class"
             android:icon="@drawable/reg"
-            android:title="Regular Class" />
-        <item
-            android:id="@+id/extra_class"
-            android:icon="@drawable/reg"
-            android:title="Extra Class" />
+            android:title="Attendance" />
+
         <item
             android:id="@+id/test"
             android:icon="@drawable/test1"
-            android:title="Test" />
+            android:title="Assignment/Test Results" />
+        <item
+            android:id="@+id/extra_class"
+            android:icon="@drawable/gallery"
+            android:title="Newton Gallery" />
 
     </group>
 
@@ -30,4 +31,13 @@
         </menu>
     </item>
 
+    <item android:title="Follow Us">
+        <menu>
+            <item
+                android:id="@+id/facebook"
+                android:icon="@drawable/logo"
+                android:title="Facebook" />
+
+        </menu>
+    </item>
 </menu>
