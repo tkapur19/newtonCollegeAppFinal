@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "984220537655",
+    "firebase_url": "https://newtoncollegeapp.firebaseio.com",
+    "project_id": "newtoncollegeapp",
+    "storage_bucket": "newtoncollegeapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984220537655:android:a535bc7969450bb6",
+        "android_client_info": {
+          "package_name": "com.example.tarunkapur.newtoncollegeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984220537655-1aoe55e9q9oivgvejpmelnapli64ueec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tarunkapur.newtoncollegeapp",
+            "certificate_hash": "88b5294762b65d924cf0b1de50ed3984f6babc5c"
+          }
+        },
+        {
+          "client_id": "984220537655-qoims1mfgb3bm75mk0u0n7g2ntteqv73.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2zFfAqRIZTAl5pE2_YCmDutjZBpRATr8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "984220537655-qoims1mfgb3bm75mk0u0n7g2ntteqv73.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
