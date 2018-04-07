@@ -25,7 +25,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,6 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -41,6 +45,10 @@ public class MainActivity extends AppCompatActivity
 
     private static final int REQUEST_CALL_PHONE = 1;
     List<listOfNotice> notices;
+    private static final int RC_SIGN_IN = 123;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
 
     private FirebaseDatabase mDataBase;
@@ -57,6 +65,27 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        firebaseAuth=FirebaseAuth.getInstance();
+
+        if (firebaseAuth.getCurrentUser()!=null){
+
+        }
+        else {
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setAvailableProviders(Arrays.asList(
+                                    new AuthUI.IdpConfig.EmailBuilder().build(),
+
+                                    new AuthUI.IdpConfig.GoogleBuilder().build())).setIsSmartLockEnabled(false)
+
+                            .setTheme(R.style.GreenTheme).setLogo(R.drawable.background).build(),
+                    RC_SIGN_IN);
+        }
+
+
+
         // RecyclerView initialisation and data encapsulation in recyclerView
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -169,6 +198,18 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            AuthUI.getInstance().signOut(this);
+            Toast.makeText(MainActivity.this, "LogOut Success", Toast.LENGTH_SHORT).show();
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setAvailableProviders(Arrays.asList(
+                                    new AuthUI.IdpConfig.EmailBuilder().build(),
+
+                                    new AuthUI.IdpConfig.GoogleBuilder().build())).setIsSmartLockEnabled(false)
+
+                            .setTheme(R.style.GreenTheme).setLogo(R.drawable.background).build(),
+                    RC_SIGN_IN);
             return true;
         }
 
@@ -259,7 +300,35 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //AuthUI.getInstance().signOut(this);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(MainActivity.this, "LogIn success", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                finish();
+                Toast.makeText(MainActivity.this, "logIn cancel", Toast.LENGTH_SHORT).show();
+
+
+            }
+        }
+
+
+    }
 
         
 
