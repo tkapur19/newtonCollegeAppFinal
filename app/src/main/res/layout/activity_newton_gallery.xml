@@ -6,13 +6,27 @@
     android:layout_height="match_parent"
     tools:context="com.example.tarunkapur.newtoncollegeapp.NewtonGallery">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:id="@+id/gallery_recycler_view"
+    <android.support.v7.widget.Toolbar
 
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/gallery_tool"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Newton Gallery"
+        android:background="#E74C3C"
+        app:titleTextColor="@color/cardview_light_background"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        >
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/gallery_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:layout_below="@+id/gallery_tool" />
 
 </RelativeLayout>

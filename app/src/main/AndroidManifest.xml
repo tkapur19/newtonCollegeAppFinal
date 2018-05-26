@@ -36,7 +36,9 @@
             android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".NewtonGallery"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity
             android:name=".SubGallery"
             android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
