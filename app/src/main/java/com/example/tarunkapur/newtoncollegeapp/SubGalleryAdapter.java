@@ -18,6 +18,11 @@ import java.util.List;
  * Created by tarunkapur on 09/01/18.
  */
 
+/*
+This class is the adapter class for the recyclerView used in subgallery for the loading images
+corresponding to a particular category.
+ */
+
 public class SubGalleryAdapter extends RecyclerView.Adapter<SubGalleryAdapter.viewHolder> {
     private List<SubMyImage> imageList;
     private Context context;

@@ -23,16 +23,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Main2Activity"
+            android:name=".Attendance"
             android:label="@string/title_activity_main2"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name=".Main3Activity"
+            android:name=".StudentsEnrolled"
             android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
         <activity
             android:name=".Assignment"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".NewtonGallery"

@@ -16,6 +16,10 @@ import java.util.List;
  * Created by tarunkapur on 07/01/18.
  */
 
+/*
+Adapter class for loading Assignment and results from the databse.
+ */
+
 public class AssignmentTestAdapter extends RecyclerView.Adapter<AssignmentTestAdapter.viewHolder> {
     private List<AssignmentTestModel> assignmentTestModelList;
     private Context context;

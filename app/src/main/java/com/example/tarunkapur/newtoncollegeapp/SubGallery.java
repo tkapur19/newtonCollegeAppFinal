@@ -16,6 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+This Activity is used for showing all the images corresponding to the a particular Event in newton gallery
+ */
+
 public class SubGallery extends AppCompatActivity {
 
     private DatabaseReference mRef;
@@ -25,22 +29,21 @@ public class SubGallery extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_gallery);
 
+        // RecyclerView Initialisation for showing images corresponding to a particular categaory(like children's day Event, newYear celebration).
         final List<SubMyImage> list=new ArrayList<>();
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.s_gallery_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
+        // Obtaining the event category from the message from the previous activity using intent.
         Bundle bundle=getIntent().getExtras();
         String myMessage=bundle.getString("myMessage");
 
-
+/*
+          getting Firebase instance and loading images from database corresponding to the selected category of the event.
+ */
         mRef= FirebaseDatabase.getInstance().getReference().child("subGalleryImage").child(myMessage);
-        SubMyImage myImage=new SubMyImage("https://scontent.fdel9-1.fna.fbcdn.net/v/t1.0-9/23517544_2005589803053338_8571067420085961527_n.jpg?oh=130d3250e75725db42cdb12161610f14&oe=5AB809A0");
-
-
-
-
         mRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {

@@ -4,6 +4,10 @@ package com.example.tarunkapur.newtoncollegeapp;
  * Created by tarunkapur on 07/01/18.
  */
 
+/*
+Modal class for Assignment and result activity.
+ */
+
 public class AssignmentTestModel {
     private String heading;
     private String date;

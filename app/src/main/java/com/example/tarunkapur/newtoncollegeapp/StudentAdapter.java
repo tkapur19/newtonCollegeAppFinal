@@ -18,6 +18,9 @@ import java.util.List;
  * Created by tarunkapur on 31/12/17.
  */
 
+/*
+Adapter for RecyclerView of enrolled students in a particular batch
+ */
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.viewHolder> {
     private List<StudentDetails> list=new ArrayList<>();
     private Context context;

@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 /**
  * Created by tarunkapur on 09/12/17.
  */
+// Tab for MWF batch timings
 
 public class Tab1 extends Fragment {
     @Nullable

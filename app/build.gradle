@@ -33,8 +33,13 @@ dependencies {
 
     androidTestImplementation 'com.android.support.test:runner:0.5'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
-    compile 'com.cloudrail:cloudrail-si-android:2.21.4'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.cloudrail:cloudrail-si-android:2.21.4'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation ('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
+        exclude module: 'support-v4'
+    }
+
+
 
 }
 

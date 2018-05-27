@@ -8,9 +8,12 @@
         android:id="@+id/card_view"
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:orientation="vertical"
         android:layout_margin="@dimen/cardview_compat_inset_shadow"
+        android:elevation="500dp"
+        app:cardElevation="50dp"
+        android:layout_weight="1"
 
         >
 
@@ -19,9 +22,11 @@
             android:layout_height="match_parent"
             android:elevation="@dimen/fab_margin"
 
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/mainNotice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -30,11 +35,13 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="15dp"
                 android:layout_marginStart="15dp"
+                android:elevation="1000dp"
 
 
                 />
 
             <TextView
+                android:elevation="2dp"
                 android:id="@+id/noticeDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

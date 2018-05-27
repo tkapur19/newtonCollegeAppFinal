@@ -18,7 +18,7 @@
         android:background="#E74C3C"
 
         app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="Assignment/Results"
         app:titleTextColor="@color/cardview_light_background">
 

@@ -6,17 +6,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.service.chooser.ChooserTarget;
-import android.service.chooser.ChooserTargetService;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -34,11 +28,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,15 +57,15 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        // toolbar Settings
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        //Firebase Authentication(Google,Email)
         firebaseAuth=FirebaseAuth.getInstance();
-
         if (firebaseAuth.getCurrentUser()!=null){
-
-        }
+            }
         else {
             startActivityForResult(
                     AuthUI.getInstance()
@@ -85,9 +80,7 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-
         // RecyclerView initialisation and data encapsulation in recyclerView
-
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         notices=new ArrayList<>();
         recyclerView.setHasFixedSize(true);
@@ -98,10 +91,10 @@ public class MainActivity extends AppCompatActivity
         //FirebaseDatabase initialisation
         mDataBase=FirebaseDatabase.getInstance();
         mRef=mDataBase.getReference().child("myNotice");
-        final myAdapter myAdapter=new myAdapter(notices);
+        final NoticeAdapter myAdapter=new NoticeAdapter(notices);
+
 
         // Read the added and changed data in the firebase database
-
         mRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -109,10 +102,8 @@ public class MainActivity extends AppCompatActivity
                 myNotice=dataSnapshot.getValue(listOfNotice.class);
                 notices.add(myNotice);
                 recyclerView.setAdapter(myAdapter);
-
-            }
-
-            @Override
+                }
+                @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
                 listOfNotice myNotice=new listOfNotice();
@@ -139,27 +130,20 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //ViewPager for ImageSlider
-        ViewPager viewPager=(ViewPager) findViewById(R.id.view_pager);
+        // AutoScrollViewPager for ImageSlider
+        AutoScrollViewPager viewPager=(AutoScrollViewPager) findViewById(R.id.view_pager);
 
         viewPagerAdapter viewPagerAdapter=new viewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
+        viewPager.startAutoScroll(5000);
+        viewPager.setInterval(5000);
+        viewPager.setCycle(true);
+
+        viewPager.setBorderAnimation(true);
+        viewPager.setSlideBorderMode(1);
 
 
-
+        //Nevigation drawer Set-Up
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -233,24 +217,32 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.reg_class) {
             // attendance system activity
-            Intent attandanceActivity=new Intent(this, Main2Activity.class);
+            Intent attandanceActivity=new Intent(this, Attendance.class);
             startActivity(attandanceActivity);
-        } else if (id == R.id.extra_class) {
+        }
+        else if (id == R.id.extra_class) {
+            // Gallery System Activity
             Intent newtonGallery=new Intent(this,NewtonGallery.class);
             startActivity(newtonGallery);
 
 
-        } else if (id == R.id.test) {
+        }
+        else if (id == R.id.test) {
 
+            // Assignment System Activity
             Intent assignmentActivity=new Intent(this,Assignment.class);
             startActivity(assignmentActivity);
 
 
 
-        } else if (id == R.id.phone) {
+        }
+        else if (id == R.id.phone) {
 
+
+            // Calling Action With Asking Permisssion
             int checkPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
             if (checkPermission != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(
@@ -258,7 +250,8 @@ public class MainActivity extends AppCompatActivity
                         new String[]{Manifest.permission.CALL_PHONE},
                         REQUEST_CALL_PHONE);
                 Log.i(TAG, "onNavigationItemSelected: ");
-            } else {
+            }
+            else {
 
                 Intent mycall = new Intent(Intent.ACTION_CALL);
                 mycall.setData(Uri.parse("tel:9899728447"));
@@ -274,6 +267,8 @@ public class MainActivity extends AppCompatActivity
 
         else if (id == R.id.email) {
 
+            //Intent For E-mail
+
            Intent intent=new Intent(Intent.ACTION_SEND);
            intent.setData(Uri.parse("mailto:"));
            String []to={"1tarun.kapur@gmail.com"};
@@ -287,12 +282,13 @@ public class MainActivity extends AppCompatActivity
 
         }
         else if (id==R.id.facebook){
+
+            //Intent for opening facebook page
             Intent facebookIntent=getOpenFacebookIntent(MainActivity.this);
             startActivity(facebookIntent);
 
 
         }
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -316,6 +312,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        // Checking for Succesful LogIn
+
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(MainActivity.this, "LogIn success", Toast.LENGTH_SHORT).show();

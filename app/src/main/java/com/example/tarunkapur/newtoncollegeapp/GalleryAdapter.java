@@ -21,6 +21,10 @@ import static android.support.v4.content.ContextCompat.startActivity;
  * Created by tarunkapur on 08/01/18.
  */
 
+/*
+        Adapter class for loading images of main newtonGalley.
+ */
+
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.viewHolder> {
     private List<MyImage> imageList;
     private Context context;

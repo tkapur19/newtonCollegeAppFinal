@@ -1,6 +1,5 @@
 package com.example.tarunkapur.newtoncollegeapp;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,25 +13,29 @@ import java.util.List;
  * Created by tarunkapur on 05/12/17.
  */
 
-public class myAdapter extends RecyclerView.Adapter<myAdapter.viewHolder> {
+/*
+Adapter class for Main Notice Board on the parent/Lanch Activity.
+ */
+
+public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.viewHolder> {
 
     private List<listOfNotice> myList;
     String TAG="myMessage";
 
-    public myAdapter(List<listOfNotice> myList) {
+    public NoticeAdapter(List<listOfNotice> myList) {
         this.myList = myList;
 
     }
 
     @Override
-    public myAdapter.viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NoticeAdapter.viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view,parent,false);
         return new viewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(myAdapter.viewHolder holder, int position) {
+    public void onBindViewHolder(NoticeAdapter.viewHolder holder, int position) {
 
         listOfNotice listOfNotice=myList.get(position);
         holder.mainText.setText(listOfNotice.getNotice());

@@ -4,6 +4,9 @@ package com.example.tarunkapur.newtoncollegeapp;
  * Created by tarunkapur on 05/12/17.
  */
 
+/*
+Modal CLass for Notices
+ */
 public class listOfNotice {
     private String notice;
     private String date;

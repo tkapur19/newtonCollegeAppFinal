@@ -3,6 +3,10 @@ package com.example.tarunkapur.newtoncollegeapp;
 /**
  * Created by tarunkapur on 08/01/18.
  */
+
+/*
+Modal class for handling Images in the newton gallery.
+ */
 public class MyImage {
     private String photoUrl;
     private String photoName;

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
  * Created by tarunkapur on 09/12/17.
  */
 
+// Tab for TTS batch timings.
 public class Tab2 extends Fragment {
     @Nullable
     @Override

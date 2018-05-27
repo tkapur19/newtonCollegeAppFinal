@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
-
+/*
+This Activity is for the final Image Viewer corresponding to Newton Gallery
+ */
 public class ImageViewer extends AppCompatActivity {
 
     @Override

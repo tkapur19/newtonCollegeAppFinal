@@ -12,6 +12,9 @@ import android.widget.ImageView;
  * Created by tarunkapur on 06/12/17.
  */
 
+/*
+Viewpager adapter for the tabs used in Attendance activity ie TTS and MWF batch.
+ */
 public class viewPagerAdapter extends PagerAdapter {
 
     private Context context;

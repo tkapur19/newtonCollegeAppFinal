@@ -3,7 +3,9 @@ package com.example.tarunkapur.newtoncollegeapp;
 /**
  * Created by tarunkapur on 31/12/17.
  */
-
+/*
+Modal class for Student details
+ */
 public class StudentDetails {
     private int rollNo;
     private String studentName;
